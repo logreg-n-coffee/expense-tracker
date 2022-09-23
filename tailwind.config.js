@@ -6,6 +6,9 @@ module.exports = {
   ],
   darkMode: "media", // or 'media' or 'class'
   theme: {
+    container: {
+      center: true,
+    },
     extend: {},
   },
   variants: {
