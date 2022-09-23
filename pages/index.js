@@ -4,7 +4,12 @@ import Image from 'next/image'
 const Home = () => {
   return (
     <main>
-     <button onClick={() => {}}>Sign In</button>
+      <button
+        onClick={() => {}}
+        className="bg-green-400 text-white hover:bg-green-500 ring-green-100"
+      >
+        Sign In
+      </button>
     </main>
   );
 };
