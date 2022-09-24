@@ -1,11 +1,15 @@
-import { MainLayout } from "../src/layouts/Main";
+import { SessionProvider } from "next-auth/react";
+
+import { MainLayout } from "../src/layouts/Main"; // MainLayout includes the Nav bar and the expense form
 import "../styles/globals.css";
 
 function MyApp({ Component, pageProps }) {
   return (
-    <MainLayout>
-      <Component {...pageProps} />
-    </MainLayout>
+    <SessionProvider>
+      <MainLayout>
+        <Component {...pageProps} />
+      </MainLayout>
+    </SessionProvider>
   );
 }
 
