@@ -1,4 +1,4 @@
-import { ExpenseForm } from "./ExpenseForm";
+import { ExpenseForm } from './ExpenseForm';
 
 export const Expense = () => {
   return (

@@ -1,4 +1,4 @@
-import { Expense } from "../src/components/Expense";
+import { Expense } from '../src/components/Expense';
 
 const Expenses = () => {
   return (
