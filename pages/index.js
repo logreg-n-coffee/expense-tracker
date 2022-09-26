@@ -6,7 +6,7 @@ const Home = () => {
   const { data: session } = useSession();
   const router = useRouter();
 
-  // if the session is logged in, redirect to the /expenses page
+  // if the session is logged in, redirect to the /expense-tracker page
   useEffect(() => {
     if (session) {
       router.push('/expense-tracker');
