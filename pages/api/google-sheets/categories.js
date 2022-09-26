@@ -31,7 +31,7 @@ const CategoriesHandler = async (req, res) => {
       accessToken: accessToken ?? '',
     });
 
-    const sheets = google.sheets({ version: 'v4', auth: process.env.GOOGLE_SHEET_API_KEY });
+    const sheets = google.sheets({ version: 'v4', auth: oauth2Client });
 
     const range = `${process.env.CATEGORIES_SHEET_NAME ?? 'categories'}!A2:B`;
 
