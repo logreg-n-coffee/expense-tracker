@@ -13,23 +13,17 @@ export const authOptions = {
         'https://accounts.google.com/o/oauth2/v2/auth?prompt=consent&access_type=offline&response_type=code',
       scope:
         'https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/spreadsheets',
-      authorization: {
-        params: {
-          prompt: 'consent',
-          access_type: 'offline',
-          response_type: 'code',
-        },
-      },
-    }),
+      })
   ],
   // https://next-auth.js.org/configuration/callbacks
   // https://next-auth.js.org/getting-started/example
   callbacks: {
     async jwt({ token, user, account, profile, isNewUser }) {
       // Persist the OAuth access_token to the token right after signin
-      if (account) {
+      if (account?.accessToken) {
         token.accessToken = account.accessToken;
       }
+      console.log('token', token);
       return token;
     },
     async session({ session, user, token }) {

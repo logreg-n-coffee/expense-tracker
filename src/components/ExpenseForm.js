@@ -1,11 +1,35 @@
-import { useState } from 'react';
-import { useForm } from 'react-hook-form';
-
+// components
 import { Button } from './Button';
 import { Field } from './Field';
 
+// useState
+import { useState } from 'react';
+
+// react hook form - https://react-hook-form.com
+import { useForm } from 'react-hook-form';
+
+// react notifications
+import toast from 'react-hot-toast';
+
+// connect to the hook that communicate with the server api
+import { useCategories } from '../hooks/useCategories';  // created with useQuery
+
+// 
+
 
 export const ExpenseForm = () => {
+  // retrieve the categories from the Google Sheets 
+  const { data } = useCategories();
+
+  // react hook form 
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { isValid }
+  } = useForm({
+    mode: 'onChange'
+  });
 
   return (
     <form
@@ -20,6 +44,7 @@ export const ExpenseForm = () => {
             placeholder="$1.23"
           />
         </Field>
+
         <Field label="Date">
           <input
             className="text-black py-4"
@@ -28,9 +53,13 @@ export const ExpenseForm = () => {
         </Field>
 
         <Field label="Category">
-          <select className="text-black py-4">
+          <select {...register('category')} className="text-black py-4">
+            {data?.values?.map(([id, category]) => (
+              <option key={id} value={category}>{category}</option>
+            ))}
           </select>
         </Field>
+
         <Field label="Description">
           <input
             className="text-black py-4"
@@ -38,6 +67,7 @@ export const ExpenseForm = () => {
             placeholder="A cupcake"
           />
         </Field>
+
       </div>
       <div className="grid grid-cols-4 gap-2">
         <div className="col-span-3">

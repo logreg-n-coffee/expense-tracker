@@ -1,7 +1,15 @@
+// NextAuth provider
 import { SessionProvider } from 'next-auth/react';
 
+// TanStack react-query provider
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+
+// layout
 import { MainLayout } from '../src/layouts/Main'; // MainLayout includes the Nav bar and the expense form
 import '../styles/globals.css';
+
+// create a react-query client
+const queryClient = new QueryClient();
 
 function MyApp({ 
   Component, 
@@ -9,9 +17,11 @@ function MyApp({
 }) {
   return (
     <SessionProvider session={session}>
-      <MainLayout>
-        <Component {...pageProps} />
-      </MainLayout>
+      <QueryClientProvider client={queryClient}>
+        <MainLayout>
+          <Component {...pageProps} />
+        </MainLayout>
+      </QueryClientProvider>
     </SessionProvider>
   );
 }
