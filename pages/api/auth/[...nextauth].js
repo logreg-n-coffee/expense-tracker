@@ -23,14 +23,18 @@ export const authOptions = {
     }),
   ],
   // https://next-auth.js.org/configuration/callbacks
+  // https://next-auth.js.org/getting-started/example
   callbacks: {
     async jwt({ token, user, account, profile, isNewUser }) {
-      if (account?.accessToken) {
+      // Persist the OAuth access_token to the token right after signin
+      if (account) {
         token.accessToken = account.accessToken;
       }
       return token;
     },
     async session({ session, user, token }) {
+      // Send properties to the client, like an access_token from a provider
+      session.accessToken = token.accessToken;
       return session;
     },
   },

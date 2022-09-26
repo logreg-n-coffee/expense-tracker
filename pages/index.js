@@ -9,7 +9,7 @@ const Home = () => {
   // if the session is logged in, redirect to the /expenses page
   useEffect(() => {
     if (session) {
-      router.push('/expenses');
+      router.push('/expense-tracker');
     }
   }, [session, router]);
 
