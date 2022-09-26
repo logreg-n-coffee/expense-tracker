@@ -28,7 +28,7 @@ const CategoriesHandler = async (req, res) => {
     });
 
     oauth2Client.setCredentials({
-      accessToken: accessToken ?? '',
+      accessToken: accessToken,
     });
 
     const sheets = google.sheets({ version: 'v4', auth: oauth2Client });
