@@ -15,7 +15,10 @@ export const authOptions = {
           access_type: 'offline',
           response_type: 'code',
         },
-        scope: 'https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/spreadsheets'
+        scope: ['https://www.googleapis.com/auth/userinfo.profile',
+                'https://www.googleapis.com/auth/userinfo.email',
+                'https://www.googleapis.com/auth/spreadsheets'
+               ]
       },
     }),
   ],
@@ -25,15 +28,15 @@ export const authOptions = {
     async jwt({ token, user, account, profile, isNewUser }) {
       // Persist the OAuth access_token to the token right after signin
       token.accessToken = account?.access_token;
-
+      console.log('======token======\n', token);
       return token;
     },
     async session({ session, user, token }) {
       // Send properties to the client, like an access_token from a provider
-      session.accessToken = token.accessToken;
-
+      session.token = token;
+      console.log('======session======\n', session);
       return session;
-    },
+    }
   },
   secret: process.env.SECRET,
 };

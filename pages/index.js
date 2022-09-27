@@ -2,16 +2,19 @@ import { useSession, signIn, signOut } from 'next-auth/react';
 import { useEffect } from 'react';
 import { useRouter } from 'next/router';
 
+// jwt token 
+import { getToken } from 'next-auth/jwt';
+
 const Home = () => {
   const { data: session } = useSession();
   const router = useRouter();
 
   // if the session is logged in, redirect to the /expense-tracker page
-  useEffect(() => {
-    if (session) {
-      router.push('/expense-tracker');
-    }
-  }, [session, router]);
+  // useEffect(() => {
+  //   if (session) {
+  //     router.push('/expense-tracker');
+  //   }
+  // }, [session, router]);
 
   // Testing feature when session is logged in
   if (session) {
@@ -19,6 +22,7 @@ const Home = () => {
       <>
         <div className="text-center bg-green-600 text-white container mx-auto">
           Signed in as {session.user.email} <br />
+          
         </div>
         <button
           className="bg-green-400 text-white hover:bg-green-500 ring-green-100 container mx-auto px-20 py-10 w-full h-full"
