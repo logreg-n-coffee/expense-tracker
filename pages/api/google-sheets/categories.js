@@ -1,4 +1,4 @@
-// an api to interact with the Google Spreadsheet on worksheet named 'categories'
+// an api to interact with the Google Spreadsheet (through googleapis) on worksheet named 'categories'
 
 // google api node.js client 
 import { google } from 'googleapis';
@@ -7,13 +7,13 @@ import { google } from 'googleapis';
 import { getToken } from 'next-auth/jwt';
 
 // load the client side self-generated secret from environment variable
-const secret = process.env.SECRET;
+const secret = process.env.NEXTAUTH_SECRET;
 
 const CategoriesHandler = async (req, res) => {
   // get token from the login session
   const token = await getToken({ req, secret });
 
-  console.log('======token from handler======\n', token);
+  // console.log('======token from handler======\n', token);
 
   if (!token) {
     res.status(401);
@@ -45,7 +45,7 @@ const CategoriesHandler = async (req, res) => {
   });
 
   res.json(response.data);
-  console.log(response.data);
+  // console.log(response.data);
 };
 
 export default CategoriesHandler;
