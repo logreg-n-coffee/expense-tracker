@@ -10,15 +10,18 @@ export const authOptions = {
       clientId: process.env.GOOGLE_CLIENT_ID,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
       authorization: {
+        // https://next-auth.js.org/configuration/providers/oauth#authorization-option
         params: {
+          // instead of specifying prompt, access_type, and response_type, we can also use the full url
+          // url: 'https://accounts.google.com/o/oauth2/v2/auth?prompt=consent&access_type=offline&response_type=code',
           prompt: 'consent',
-          access_type: 'offline',
+          access_type: 'offline', // offline access_type will
           response_type: 'code',
+          // scope should be put within params
+          scope:
+            'https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/spreadsheets',
         },
-        // scope: 'https://www.googleapis.com/auth/spreadsheets',
-        scope: 'https://www.googleapis.com/auth/spreadsheets',
       },
-      // scope: 'https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/spreadsheets',
     }),
   ],
   // https://next-auth.js.org/configuration/callbacks
