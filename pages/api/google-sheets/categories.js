@@ -10,38 +10,42 @@ import { getToken } from 'next-auth/jwt';
 const secret = process.env.SECRET;
 
 const CategoriesHandler = async (req, res) => {
-    // get token from the login session 
-    const token = await getToken({ req, secret });
+  // get token from the login session
+  const token = await getToken({ req, secret });
 
-    if (!token) {
-        res.status(401);
-    }
+  console.log('======token from handler======\n', token);
 
-    // load in the variables to access the google api auth client
-    const clientId = process.env.GOOGLE_CLIENT_ID;
-    const clientSecret = process.env.GOOGLE_CLIENT_SECRET;
-    const accessToken = token?.accessToken;
+  if (!token) {
+    res.status(401);
+  }
 
-    const oauth2Client = new google.auth.OAuth2({
-        clientId,
-        clientSecret
-    });
+  // load in the variables to access the google api auth client
+  const clientId = process.env.GOOGLE_CLIENT_ID;
+  const clientSecret = process.env.GOOGLE_CLIENT_SECRET;
+  const accessToken = token?.accessToken;
 
-    oauth2Client.setCredentials({
-      accessToken: accessToken,
-    });
+  // https://github.com/googleapis/google-api-nodejs-client#readme
+  const oauth2Client = new google.auth.OAuth2({
+    clientId,
+    clientSecret,
+  });
 
-    const sheets = google.sheets({ version: 'v4', auth: oauth2Client });
+  oauth2Client.setCredentials({
+    // property name is access_token but not accessToken
+    access_token: accessToken,
+  });
 
-    const range = `${process.env.CATEGORIES_SHEET_NAME ?? 'categories'}!A2:B`;
+  const sheets = google.sheets({ version: 'v4', auth: oauth2Client });
 
-    const response = await sheets.spreadsheets.values.get({
-        spreadsheetId: process.env.SHEET_ID,
-        range
-    });
+  const range = `${process.env.CATEGORIES_SHEET_NAME ?? 'categories'}!A2:B`;
 
-    res.json(response.data);
-    console.log(response.data);
+  const response = await sheets.spreadsheets.values.get({
+    spreadsheetId: process.env.SHEET_ID,
+    range,
+  });
+
+  res.json(response.data);
+  console.log(response.data);
 };
 
 export default CategoriesHandler;

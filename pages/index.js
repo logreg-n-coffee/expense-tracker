@@ -10,11 +10,11 @@ const Home = () => {
   const router = useRouter();
 
   // if the session is logged in, redirect to the /expense-tracker page
-  // useEffect(() => {
-  //   if (session) {
-  //     router.push('/expense-tracker');
-  //   }
-  // }, [session, router]);
+  useEffect(() => {
+    if (session) {
+      router.push('/expense-tracker');
+    }
+  }, [session, router]);
 
   // Testing feature when session is logged in
   if (session) {
