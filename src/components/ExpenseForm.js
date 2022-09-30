@@ -17,6 +17,9 @@ import { useCategories } from '../hooks/useCategories';  // created with useQuer
 // useMutation to create expenses
 import { useMutation } from '@tanstack/react-query';
 
+// currency input
+import CurrencyInput from 'react-currency-input-field';
+
 
 export const ExpenseForm = () => {
   // retrieve the categories from the Google Sheets
@@ -70,11 +73,13 @@ export const ExpenseForm = () => {
     >
       <div className='flex flex-col gap-4'>
         <Field label='Amount' required>
-          <input
+          <CurrencyInput
             {...register('amount', { required: true })}
             className='text-black py-4'
-            type='number'
-            placeholder='$1.23'
+            placeholder='$123,456,789.00'
+            prefix='$'
+            groupSeparator=','
+            decimalSeparator='.'
           />
         </Field>
 
