@@ -28,8 +28,8 @@ const ExpensesHandler = async (req, res) => {
           // cell values
           parsedBody.date,
           parsedBody.category,
-          parsedBody.description,
           parsedBody.amount,
+          parsedBody.description,
         ],
         // additional rows (if any)
       ];

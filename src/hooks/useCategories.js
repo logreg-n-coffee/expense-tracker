@@ -10,8 +10,12 @@ import toast from 'react-hot-toast';
 
 export const useCategories = () => {
   return (
-    useQuery(['categories'],
-    () => fetch('/api/google-sheets/categories').then((res) => res.json()),
+    useQuery(
+      ['categories'],
+      () => 
+        fetch('/api/google-sheets/categories')
+        .then((res) => res.json())
+        .catch((err) => err.json()),
     {
       refetchOnWindowFocus: false,
       onError: () => {
