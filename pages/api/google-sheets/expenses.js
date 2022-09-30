@@ -16,20 +16,22 @@ const ExpensesHandler = async (req, res) => {
         res.status(401);
       }
 
-      // destruct the request body 
+      // destruct the request body
       const { body } = req;
 
-      // process the data 
+      // process the data
       const parsedBody = JSON.parse(body);
 
       // prepare the data for POST request
       const values = [
         [
+          // cell values
           parsedBody.date,
           parsedBody.category,
           parsedBody.description,
           parsedBody.amount,
         ],
+        // additional rows (if any)
       ];
 
       // load in the variables to access the google api auth client
@@ -51,18 +53,29 @@ const ExpensesHandler = async (req, res) => {
 
       const range = `${process.env.EXPENSES_SHEET_NAME ?? 'expenses'}!A1:C1`;
 
-      const response = await sheets.spreadsheets.values.append({
-        spreadsheetId: process.env.SHEET_ID,
-        range,
-        valueInputOption: 'USER_ENTERED',
-        requestBody: {
-          values,
-        },
-      });
+      const requestBody = { 
+        // desired properties to the request body
+        values,
+      };
 
-      res.json(response.data);
-      console.log(response.data);
-    
+      // https://developers.google.com/sheets/api/reference/rest/v4/spreadsheets.values/append
+      
+      try {
+        const response = await sheets.spreadsheets.values.append({
+          // request params
+          spreadsheetId: process.env.SHEET_ID,
+          range,
+          valueInputOption: 'USER_ENTERED',
+          requestBody,
+        });
+
+        res.json(response.data);
+        console.log(response.data);
+
+      } catch (err) {
+        throw new Error(err);
+      }
+
     } else {
         res.status(404);
     }
