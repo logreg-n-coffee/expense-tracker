@@ -39,13 +39,20 @@ const CategoriesHandler = async (req, res) => {
 
   const range = `${process.env.CATEGORIES_SHEET_NAME ?? 'categories'}!A2:B`;
 
-  const response = await sheets.spreadsheets.values.get({
-    spreadsheetId: process.env.SHEET_ID,
-    range,
-  });
+  try {
+    const response = await sheets.spreadsheets.values.get({
+      // request params
+      spreadsheetId: process.env.SHEET_ID,
+      range,
+    });
 
-  res.json(response.data);
-  // console.log(response.data);
+    res.json(response.data);
+    // console.log(response.data);
+
+  } catch (err) {
+    throw new Error(err);
+  }
+
 };
 
 export default CategoriesHandler;

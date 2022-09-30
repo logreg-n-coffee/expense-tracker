@@ -1,4 +1,8 @@
 // customized query for server state management - https://tanstack.com/query/v4/docs/overview
+
+// hooks can only be used within react functional components - 
+// useCategories retrieves category data from google sheets with useQuery 
+
 import { useQuery } from '@tanstack/react-query';
 
 // react notifications
