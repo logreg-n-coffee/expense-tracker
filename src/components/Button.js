@@ -1,7 +1,8 @@
 const variants = {
-  primary: 'bg-green-400 text-white hover:bg-green-500 ring-green-100',
-  outline: 'bg-white text-green-400 hover:bg-gray-100 ring-green-100',
-  secondary: 'bg-gray-400 text-white hover:bg-gray-600 ring-gray-100',
+  primary:
+    'items-center rounded border border-transparent bg-indigo-600 font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2',
+  secondary:
+    'items-center rounded border border-transparent bg-indigo-100 font-medium text-indigo-700 hover:bg-indigo-200 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2',
 };
 
 const defaultStyles =

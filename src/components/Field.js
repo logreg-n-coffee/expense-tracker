@@ -1,9 +1,9 @@
-export const Field = ({ children, label, required = false }) => {
+export const Field = ({ children, label, optional = false }) => {
   return (
-    <label className='flex flex-col text-gray-400'>
-      <span>
+    <label className='block text-sm font-medium text-gray-700'>
+      <span className='flex justify-between'>
         {label}
-        {required && <span className='text-red-500 text-sm'>*</span>}
+        {optional && <span className='text-sm text-gray-500'>Optional</span>}
       </span>
       {children}
     </label>

@@ -20,6 +20,9 @@ import { useMutation } from '@tanstack/react-query';
 // currency input
 import CurrencyInput from 'react-currency-input-field';
 
+// icons
+import { CalendarIcon } from '@heroicons/react/24/solid';
+
 
 export const ExpenseForm = () => {
   // retrieve the categories from the Google Sheets
@@ -72,27 +75,46 @@ export const ExpenseForm = () => {
       className='flex flex-col gap-10 h-full'
     >
       <div className='flex flex-col gap-4'>
-        <Field label='Amount' required>
-          <CurrencyInput
-            {...register('amount', { required: true })}
-            className='text-black py-4'
-            placeholder='$123,456,789.00'
-            prefix='$'
-            groupSeparator=','
-            decimalSeparator='.'
-          />
+        <Field label='Amount'>
+          <div className='relative mt-1 rounded-md shadow-sm'>
+            <div className='pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3'>
+              <span className='text-gray-500 sm:text-sm'>$</span>
+            </div>
+            <CurrencyInput
+              {...register('amount', { required: true })}
+              type='text'
+              className='block w-full rounded-md border-gray-300 pl-7 pr-12 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm'
+              placeholder='0.00'
+              groupSeparator=','
+              decimalSeparator='.'
+            />
+            <div className='pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3'>
+              <span className='text-gray-500 sm:text-sm'>USD</span>
+            </div>
+          </div>
         </Field>
 
         <Field label='Date'>
-          <input
-            {...register('date', { required: true })}
-            className='text-black py-4'
-            type='date'
-          />
+          <div className='relative flex flex-grow items-stretch focus-within:z-10'>
+            <div className='pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3'>
+              <CalendarIcon
+                className='h-5 w-5 text-gray-400'
+                aria-hidden='true'
+              />
+            </div>
+            <input
+              {...register('date', { required: true })}
+              className='block w-full rounded-md pl-10 border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm'
+              type='date'
+            />
+          </div>
         </Field>
 
         <Field label='Category'>
-          <select {...register('category')} className='text-black py-4'>
+          <select
+            {...register('category')}
+            className='block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm'
+          >
             {data?.values?.map(([id, category]) => (
               <option key={id} value={category}>
                 {category}
@@ -101,10 +123,10 @@ export const ExpenseForm = () => {
           </select>
         </Field>
 
-        <Field label='Description'>
+        <Field label='Description' optional>
           <input
             {...register('description')}
-            className='text-black py-4'
+            className='block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm'
             type='text'
             placeholder='A cupcake'
           />
