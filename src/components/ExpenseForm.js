@@ -112,7 +112,7 @@ export const ExpenseForm = () => {
 
         <Field label='Category'>
           <select
-            {...register('category')}
+            {...register('category', { required: true })}
             className='block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm'
           >
             {data?.values?.map(([id, category]) => (
@@ -135,7 +135,7 @@ export const ExpenseForm = () => {
 
       <div className='grid grid-cols-4 gap-2'>
         <div className='col-span-3'>
-          <Button disabled={!isValid} className='py-4 w-full'>
+          <Button disabled={!isValid} className='py-4 w-full' type='submit'>
             {isLoading ? 'Loading...' : 'Add'}
           </Button>
         </div>
