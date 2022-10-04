@@ -1,11 +1,12 @@
 const variants = {
-  primary: 'bg-green-400 text-white hover:bg-green-500 ring-green-100',
-  outline: 'bg-white text-green-400 hover:bg-gray-100 ring-green-100',
-  secondary: 'bg-gray-400 text-white hover:bg-gray-600 ring-gray-100',
+  primary:
+    'inline-flex items-center rounded-md border border-transparent bg-indigo-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2',
+  secondary:
+    'inline-flex items-center rounded-md border border-transparent bg-indigo-100 px-6 py-3 text-base font-medium text-indigo-700 hover:bg-indigo-200 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2',
 };
 
 const defaultStyles =
-  'disabled:opacity-25 rounded font-bold text-lg ring-4 shadow-sm';
+  'disabled:opacity-50';
 
 export const Button = ({ variant = 'primary', ...p }) => {
   const { className, ...props } = p;
