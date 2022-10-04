@@ -9,7 +9,8 @@ import { signIn, signOut, useSession } from 'next-auth/react';
 // navigation items
 const navigation = [
   { name: 'Sparkle it!', href: '/' },
-  { name: 'Profile', href: '#' },
+  { name: 'Profile', href: '/profile' },
+  { name: 'Spreadsheet', href: '/spreadsheet' }
 ];
 
 
