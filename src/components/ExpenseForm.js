@@ -133,8 +133,8 @@ export const ExpenseForm = () => {
         </Field>
       </div>
 
-      <div className='grid grid-cols-4 gap-2'>
-        <div className='col-span-3'>
+      <div className='sm:grid sm:grid-cols-4 sm:gap-2 grid grid-flow-row gap-1'>
+        <div className='sm:col-span-3'>
           <Button disabled={!isValid} className='w-full' type='submit'>
             {isLoading ? 'Loading...' : 'Add'}
           </Button>
