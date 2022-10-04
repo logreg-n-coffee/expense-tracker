@@ -21,11 +21,11 @@ export const Nav = () => {
     <header className='bg-indigo-600'>
       <nav className='mx-auto max-w-7xl px-4 sm:px-6 lg:px-8' aria-label='Top'>
         <div className='flex w-full items-center justify-between border-b border-indigo-500 py-6 lg:border-none'>
-          <div className='flex items-center'>
+          <div className='flex items-center text-white'>
             <Link href='/'>
               <a>
                 <span className='sr-only'>Sparkle it - Your Expense Tracker</span>
-                <SparklesIcon className='h-5 w-5' />
+                <SparklesIcon className='h-8 w-8' />
               </a>
             </Link>
             <div className='ml-10 hidden space-x-8 lg:block'>
