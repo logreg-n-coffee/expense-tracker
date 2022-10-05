@@ -20,15 +20,17 @@ const Spreadsheet = () => {
         {session && (
           <>
             <BigLogo
+              iconName='table'
               heading='Redirecting'
-              subheading='to your spreadsheet now'
+              subheading='to your spreadsheet'
             />
           </>
         )}
         {!session && (
           <>
-            <BigLogo
-              heading='Hey Hey'
+            <BigLogo 
+              iconName='table'
+              heading='Sign in required'
               subheading='Please sign in to view your spreadsheet'
             />
             <Login message='Sign in now' />
