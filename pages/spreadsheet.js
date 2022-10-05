@@ -1,6 +1,9 @@
 import { useSession } from 'next-auth/react';
 import { useEffect } from 'react';
 
+import { BigLogo } from '../src/components/BigLogo';
+import { Login } from '../src/components/Login';
+
 const Spreadsheet = () => {
     const { data: session } = useSession();
 
@@ -13,12 +16,23 @@ const Spreadsheet = () => {
     }, [session]);
 
     return (
-      <div>
+      <div className='flex min-h-full flex-col justify-center py-12 sm:px-6 lg:px-8'>
         {session && (
-          <div>Redirecting...</div>
+          <>
+            <BigLogo
+              heading='Redirecting'
+              subheading='to your spreadsheet now'
+            />
+          </>
         )}
         {!session && (
-          <div>Not signed in, please sign in to view your spreadsheet.</div>
+          <>
+            <BigLogo
+              heading='Hey Hey'
+              subheading='Please sign in to view your spreadsheet'
+            />
+            <Login message='Sign in now' />
+          </>
         )}
       </div>
     );
