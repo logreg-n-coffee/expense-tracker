@@ -5,7 +5,7 @@ import { SessionProvider } from 'next-auth/react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
 // layout
-import { MainLayout } from '../src/layouts/Main'; // MainLayout includes the Nav bar and the expense form
+import { MainLayout } from '../src/layouts/MainLayout'; // MainLayout includes the Nav bar and the expense form
 import '../styles/globals.css';
 
 // create a react-query client

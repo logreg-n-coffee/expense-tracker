@@ -56,16 +56,17 @@ export const ExpenseForm = () => {
       onSuccess: () => {
         const nextCount = count + 1;
         setCount(nextCount);
+
         if (nextCount >= 5) {
           setCount(0);
         }
+
         toast.success(
           nextCount % 5 ? 'Added one expense' : 'Wow! 5 in a row',
         );
-        console.log('counter', count);
       },
       onError: (err) => {
-        toast.error('Something went wrong. Please sign in and try again.');
+        toast.error('Something went wrong. 😢');
       },
     }
   );
@@ -143,7 +144,9 @@ export const ExpenseForm = () => {
             {isLoading ? 'Loading...' : 'Add'}
           </Button>
         </div>
-        <Button onClick={() => reset()} variant='secondary'>
+        <Button 
+          onClick={() => reset()} 
+          variant='secondary'>
           Reset
         </Button>
       </div>

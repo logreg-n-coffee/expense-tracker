@@ -29,7 +29,7 @@ export const BigLogo = ({ heading, subheading, iconName }) => {
         <p className='text-3xl text-transparent bg-clip-text bg-gradient-to-br from-indigo-700 to-indigo-500'>
           {heading}
         </p>
-        <p className='text-sm text-indigo-500'>{subheading}</p>
+        <p className='text-sm text-indigo-500 mt-2'>{subheading}</p>
       </h2>
     </div>
   );

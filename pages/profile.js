@@ -15,7 +15,7 @@ const Profile = () => {
           <BigLogo
             iconName='user'
             heading='Sign in required'
-            subheading='Please sign in to view your profile'
+            subheading='to view your profile'
           />
           <Login message='Sign in now' />
         </div>
