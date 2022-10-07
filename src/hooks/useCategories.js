@@ -16,10 +16,10 @@ export const useCategories = () => {
         fetch('/api/google-sheets/categories')
         .then((res) => res.json())
         .catch((err) => err.json()),
-    {
-      refetchOnWindowFocus: false,
-      onError: () => {
-        toast.error('Something went wrong 😢');
+      {
+        refetchOnWindowFocus: false,
+        onError: () => {
+          toast.error('Something went wrong 😢');
       },
     })
   );
