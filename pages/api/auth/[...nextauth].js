@@ -19,7 +19,7 @@ export const authOptions = {
           response_type: 'code',
           // scope should be put within params
           scope:
-            'https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/spreadsheets',
+            'https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/spreadsheets https://www.googleapis.com/auth/drive.file',
         },
       },
     }),
