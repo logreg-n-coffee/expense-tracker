@@ -12,7 +12,7 @@ const secret = process.env.NEXTAUTH_SECRET;
 const CategoriesHandler = async (req, res) => {
   switch (req.method) {
     case 'GET':
-      return getCategories();
+      return await getCategories();
     default:
       return res
         .status(405)

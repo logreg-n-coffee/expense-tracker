@@ -10,7 +10,7 @@ const ExpensesHandler = async (req, res) => {
   // As we are adding expenses, make sure the req.method is 'POST'
   switch (req.method) {
     case 'POST':
-      return addExpense();
+      return await addExpense();
     default:
       return res
         .status(405)
