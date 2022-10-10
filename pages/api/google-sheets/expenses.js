@@ -84,8 +84,10 @@ const ExpensesHandler = async (req, res) => {
         requestBody,
       });
 
-      res.json(response.data);
       console.log(response.data);
+
+      res.json(response.data);
+      
     } catch (err) {
       throw new Error(err);
     }

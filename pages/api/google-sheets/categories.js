@@ -64,9 +64,11 @@ const CategoriesHandler = async (req, res) => {
         spreadsheetId: process.env.SHEET_ID,
         range,
       });
-
-      res.json(response.data);
+      
       console.log(response.data);
+      
+      res.json(response.data);
+      
     } catch (err) {
       throw new Error(err);
     }

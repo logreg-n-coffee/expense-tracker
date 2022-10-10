@@ -57,19 +57,30 @@ const SpreadsheetsHandler = async (req, res) => {
     const oauth2Client = await authenticate(token);
     const drive = google.drive({ version: 'v3', auth: oauth2Client });
 
-    // let files = [];
     try {
-      const res = await drive.files.list({
+      const response = await drive.files.list({
         q: "mimeType='application/vnd.google-apps.spreadsheet'",
       });
-      console.log('=====================================\n', 'response', res);
-      return res;
+
+      console.log('response data', response.data);
+      res.json(response.data);
+
     } catch (err) {
       throw err;
     }
   }
 
-  // async createABlankSheet()
+  async function createABlankSheet() {
+    console.log('running createABlankSheet');
+
+    const { body } = req;
+
+    // console.log(body);
+
+    // const parsedBody = JSON.parse(body);
+
+    // console.log('the parsed request body is: ', parsedBody);
+  }
 
 };
 
