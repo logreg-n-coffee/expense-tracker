@@ -9,8 +9,10 @@ const APITesting = () => {
     ['load-spreadsheets'],
     () => fetch('/api/google-sheets/spreadsheets')
     .then((response) => response.json())
-    .then(console.log)
-    .catch(console.error)
+    .catch(console.error),
+    {
+      refetchOnWindowFocus: false,
+    }
   );
 
   const {
@@ -27,14 +29,18 @@ const APITesting = () => {
     (values) => 
       fetch('/api/google-sheets/spreadsheets', {
         method: 'POST',
-        data: JSON.stringify(values),
+        body: JSON.stringify(values),
       })
       .then((res) => res.json())
       .catch((err) => console.error(err)),
+    {
+      onSuccess: () => console.log('mutation completed successfully!!')
+    }
   );
 
-  const onSubmit = data => {
+  const onSubmit = (data) => {
     console.log('onSubmit clicked!!');
+    console.log('data sent from the browser: ', data);
     return mutate(data);
   };
 
@@ -42,7 +48,7 @@ const APITesting = () => {
     <>
       <div className='flex-row text-black outline m-4 p-4'>
         <h1 className='p-4 text-center'>All spreadsheets</h1>
-        <p className='outline m-3'>{JSON.stringify(data)}</p>
+        <p className='outline m-3'>{JSON.stringify(data, null, 4)}</p>
       </div>
       <div className='flex-row text-black outline m-4 p-4'>
         <p className='p-4 text-center'>Create an empty spreadsheet</p>
@@ -51,7 +57,7 @@ const APITesting = () => {
           onSubmit={handleSubmit(onSubmit)}
         >
           <input 
-            {...register('name', { required: true })}
+            {...register('title', { required: true })}
             className='bg-white outline' 
             type='text' 
             placeholder='name this spreadsheet' 
