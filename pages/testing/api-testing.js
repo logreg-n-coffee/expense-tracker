@@ -6,12 +6,17 @@ import { useForm } from "react-hook-form";
 
 import { useMutation } from "@tanstack/react-query";
 
-export function getStaticProps() {
-  return {
-    // returns the default 404 page with a status code of 404 in production
-    notFound: process.env.NODE_ENV === 'production',
-  };
-}
+export const getServerSideProps = () => {
+  if (process.env.NODE_ENV === 'production') {
+   return {
+     redirect: {
+       permanent: false,
+       destination: "/",
+     },
+   };
+ }
+  return { props: {} };
+};
 
 const APITesting = () => {
   const { data } = useQuery(
