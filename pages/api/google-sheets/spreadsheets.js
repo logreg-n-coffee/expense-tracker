@@ -37,13 +37,8 @@ const SpreadsheetsHandler = async (req, res) => {
   }
 
   async function createABlankSheetWithCustomizedName() {
-    console.log('running createABlankSheet');
-
     const { body } = req;
-
     const parsedBody = JSON.parse(body);
-
-    console.log('request body sent to the server via api: ', parsedBody);
 
     const token = await getNextAuthToken(req);
     const oauth2Client = await authenticate(token);
@@ -57,14 +52,12 @@ const SpreadsheetsHandler = async (req, res) => {
           },
         },
       });
-
-      console.log('create spreadsheet response: ', response);
-      res.send('spreadsheet created and the response is: ', response);
+      
+      res.json(response.data);
 
     } catch (err) {
       console.error(err);
     }
-
   }
 
 };
