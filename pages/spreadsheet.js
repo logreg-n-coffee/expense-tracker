@@ -1,8 +1,9 @@
 import { useSession } from 'next-auth/react';
-import { useEffect } from 'react';
 
 import { BigLogo } from '../src/components/BigLogo';
 import { Login } from '../src/components/Login';
+
+import { SpreadsheetForm } from '../src/components/SpreadsheetForm';
 
 const redirectToSpreadSheet = () => {
   return window.location.assign(
@@ -12,12 +13,6 @@ const redirectToSpreadSheet = () => {
 
 const Spreadsheet = () => {
     const { data: session } = useSession();
-
-    useEffect(() => {
-        if (session) {
-            setTimeout(() => redirectToSpreadSheet(), 20);
-        }
-    }), [session];
 
     return (
       <div className='flex min-h-full flex-col justify-center py-12 sm:px-6 lg:px-8'>
