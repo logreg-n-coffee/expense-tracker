@@ -89,7 +89,7 @@ const ExpensesHandler = async (req, res) => {
       res.json(response.data);
       
     } catch (err) {
-      throw new Error(err);
+      throw err;
     }
   }
 };
