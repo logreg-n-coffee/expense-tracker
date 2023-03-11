@@ -1,9 +1,9 @@
-import { useSession } from 'next-auth/react';
+import { signIn, useSession } from 'next-auth/react';
 
 import Image from 'next/image';
 
 import { BigLogo } from '../src/components/BigLogo';
-import { Login } from '../src/components/Login';
+import { ClickButton } from '../src/components/ClickButton';
 
 
 const Profile = () => {
@@ -17,7 +17,10 @@ const Profile = () => {
             heading='Sign in required'
             subheading='to view your profile'
           />
-          <Login message='Sign in now' />
+          <ClickButton
+            message='Sign in now'
+            actionFn={signIn}
+          />
         </div>
       );
     }
